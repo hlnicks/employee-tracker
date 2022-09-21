@@ -1,18 +1,23 @@
--- required tables:
+DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS employees;
 
--- department
--- id : INT PRIMARY KEY
--- name : VARCHAR(30)
+CREATE TABLE departments (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL
+);
 
--- role
--- id : INT PRIMARY KEY
--- title : VARCHAR(30) to hold role title
--- salary : DECIMAL to hold role salary
--- department_id : INT to hold reference to department role belongs to
+CREATE TABLE roles (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(30) NOT NULL
+    salary DECIMAL(6,2) NOT NULL,
+    department_id INTEGER,
+);
 
--- employee
--- id : INT PRIMARY KEY
--- first_name : VARCHAR(30) to hold employee first name
--- last_name : VARCHAR(30) to hold employee last name
--- role_id : INT to hold reference to employee role
--- manager_id : INT to hold reference to another employee that is the manager of current employee. use null if employee doesnt have a manager
+CREATE TABLE employees (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INTEGER,
+    manager_id INTEGER
+);
